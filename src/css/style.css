@@ -3,3 +3,12 @@
 	top: 0;
 	left: 0;
 }
+
+.photograph {
+	border: 10px solid white;
+	box-shadow: -4px 1px 30px 18px rgba(0, 0, 0, 0.4);
+}
+
+.gradient-bg {
+	background: linear-gradient(to top, #1d976c, #93f9b9);
+}

@@ -1,10 +1,12 @@
-import {preloadImage} from '@remotion/preload';
+import {preloadImage, preloadAudio} from '@remotion/preload';
 import {staticFile} from 'remotion';
 import {range} from 'lodash';
 
 type Assets = {
 	imageUrls: string[];
+	audioTrackUrl: string;
 	_preloadedImageHandles: Array<() => void>;
+	_audioTrackHandle: null | (() => void);
   load: () => void;
   unload: () => void;
 };
@@ -18,6 +20,10 @@ type Assets = {
 const assets: Assets = {
 	imageUrls: [],
 
+	audioTrackUrl: staticFile('assets/music.mp3'),
+
+	_audioTrackHandle: null,
+
 	// A list of functions where the `i`th function
 	// unloads the `i`th image in the `imageUrls` list.
 	_preloadedImageHandles: [],
@@ -30,7 +36,8 @@ const assets: Assets = {
 		this.imageUrls = range(0, 20)
 			.map((n) => staticFile(`assets/photo-${n}.jpg`))
 			.reverse();
-		assets._preloadedImageHandles = assets.imageUrls.map(preloadImage);
+		this._preloadedImageHandles = this.imageUrls.map(preloadImage);
+		this._audioTrackHandle = preloadAudio(this.audioTrackUrl)
 	},
 
   /**
@@ -38,6 +45,8 @@ const assets: Assets = {
    */
   unload() {
     this._preloadedImageHandles.forEach(handle => handle());
+		if (this._audioTrackHandle)
+			this._audioTrackHandle();
   }
 };
 

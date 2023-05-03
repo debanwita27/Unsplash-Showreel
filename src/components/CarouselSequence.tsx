@@ -1,17 +1,26 @@
-import React from 'react';
-import { AbsoluteFill, Img } from 'remotion';
+import {AbsoluteFill, Img} from 'remotion';
+import assets from './assets';
+import { last } from 'lodash'
 
-export default function Carousel(): JSX.Element {
-  // TODO (@dm): club common styles into a CSS class, or a style object.
+export function CarouselTransition(): JSX.Element {
+	// TODO (@dm): club common styles into a CSS class, or a style object.
+
+	const rotation = 25;
 	return (
 		<AbsoluteFill
 			style={{
-				backgroundColor: 'black',
 				justifyContent: 'center',
-				alignItems: 'center',
+				alignItems: 'center'
 			}}
 		>
-        Foo
+			<Img src={assets.imageUrls[5]} className="photograph" style={{
+				transform: `rotate(${rotation}deg)`,
+				height: '80%'
+			}} />
 		</AbsoluteFill>
 	);
+}
+
+export function Carousel(): JSX.Element {
+	return <> </>
 }

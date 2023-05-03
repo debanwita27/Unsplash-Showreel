@@ -1,14 +1,10 @@
 import {
 	AbsoluteFill,
 	useCurrentFrame,
-	Img,
+	Img
 } from 'remotion';
 import React from 'react';
-import Config from './config'
 import assets from './assets'
-
-// The sequence described by this file.
-const Sequence = Config.sequences[0];
 
 /**
  * Load images from their URLs, and stack them on top of each other.
@@ -31,11 +27,11 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
 		return (
 			<Img
 				key={index}
+				className="photograph"
 				style={{
 					margin: 'auto',
 					height: '75%',
 					position: 'absolute',
-					border: '3px solid white',
 					transform: `rotate(${rotationInDeg}deg) translate(${translateInPx}px)`,
 				}}
 				src={url}
@@ -53,13 +49,14 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
  export default function ImageStackSequence(): JSX.Element {
 	const imageCount = assets.imageUrls.length;
 	const [images, setImages] = React.useState<JSX.Element[]>([]);
+	const framesToLast = 180;
 
 	React.useEffect(() => {
 		setImages(stackImages(assets.imageUrls));
 	}, []);
 
 	// Once every `framesPerImage` frames, we render a new image on top
-	const framesPerImage = Sequence.numFrames / imageCount;
+	const framesPerImage = framesToLast / imageCount;
 	const currentFrame = useCurrentFrame();
 
 	// Every frame, images in range [0, lastIndex] are displayed.
@@ -68,11 +65,10 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
 	return (
 		<AbsoluteFill
 			style={{
-				backgroundColor: 'black',
 				justifyContent: 'center',
 				alignItems: 'center',
 			}}
-			className="image-container"
+			className="image-container gradient-bg"
 		>
 			{images.slice(0, lastIndex)}
 		</AbsoluteFill>

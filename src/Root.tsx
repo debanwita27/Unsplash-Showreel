@@ -1,13 +1,26 @@
-import {Composition} from 'remotion';
+import {Composition, Sequence, Audio } from 'remotion';
 import './css/style.css';
 import React from 'react';
-import ImageStackSequence from './components/ImageStackSequence';
-import Config from './components/config';
+import { ImageStackSequence, CarouselTransition } from './components';
+import video from './components/video-parameters';
 import assets from './components/assets';
 
-export const RemotionRoot: React.FC = () => {
-	const firstSequence = Config.sequences[0];
+export const Video: React.FC = () => {
+	const firstSequence = video.sequences[0];
+	return (
+		<>
+			<Audio src={assets.audioTrackUrl} />
+			<Sequence durationInFrames={firstSequence.numFrames}>
+				<ImageStackSequence />
+			</Sequence>
+			<Sequence from={firstSequence.numFrames - 30} durationInFrames={60}>
+				<CarouselTransition />
+			</Sequence>
+		</>
+	);
+};
 
+export const RemotionRoot: React.FC = () => {
 	// load all assets before the first render.
 	React.useEffect(() => {
 		// when the `Root` component is mounted, load all assets.
@@ -18,13 +31,15 @@ export const RemotionRoot: React.FC = () => {
 	}, []);
 
 	return (
-		<Composition
-			id="FirstSequence"
-			component={ImageStackSequence}
-			durationInFrames={firstSequence.numFrames}
-			fps={firstSequence.fps}
-			width={Config.width}
-			height={Config.height}
-		/>
+		<>
+			<Composition
+				id="FirstSequence"
+				component={Video}
+				durationInFrames={video.durationInSec * video.fps}
+				fps={video.fps}
+				width={video.width}
+				height={video.height}
+			/>
+		</>
 	);
 };
