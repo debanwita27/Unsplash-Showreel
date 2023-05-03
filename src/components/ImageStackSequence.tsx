@@ -68,7 +68,7 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
 				justifyContent: 'center',
 				alignItems: 'center',
 			}}
-			className="image-container gradient-bg"
+			className="image-container"
 		>
 			{images.slice(0, lastIndex)}
 		</AbsoluteFill>

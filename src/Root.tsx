@@ -1,7 +1,13 @@
-import {Composition, Sequence, Audio } from 'remotion';
+import {Composition, Sequence, Audio} from 'remotion';
 import './css/style.css';
 import React from 'react';
-import { ImageStackSequence, CarouselTransition } from './components';
+import {
+	ImageStackSequence,
+	CarouselTransition,
+	Carousel,
+	BackgroundSequence,
+	TextWithBg,
+} from './components';
 import video from './components/video-parameters';
 import assets from './components/assets';
 
@@ -10,11 +16,23 @@ export const Video: React.FC = () => {
 	return (
 		<>
 			<Audio src={assets.audioTrackUrl} />
+			<Sequence durationInFrames={video.durationInSec * video.fps}>
+				<BackgroundSequence />
+			</Sequence>
 			<Sequence durationInFrames={firstSequence.numFrames}>
 				<ImageStackSequence />
 			</Sequence>
-			<Sequence from={firstSequence.numFrames - 30} durationInFrames={60}>
+			<Sequence from={firstSequence.numFrames - 30} durationInFrames={182}>
 				<CarouselTransition />
+			</Sequence>
+
+			<Sequence from={240} durationInFrames={240}>
+				<Carousel />
+			</Sequence>
+
+
+			<Sequence from={240} durationInFrames={240}>
+				<TextWithBg />
 			</Sequence>
 		</>
 	);

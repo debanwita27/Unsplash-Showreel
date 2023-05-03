@@ -12,3 +12,28 @@
 .gradient-bg {
 	background: linear-gradient(to top, #1d976c, #93f9b9);
 }
+
+#transition-image {
+	animation: rotate-and-scale 1.5s forwards;
+	height: 80%;
+}
+@keyframes rotate-and-scale {
+	0% {
+		transform: rotate(25deg);
+	}
+	20% {
+		transform: rotate(25deg);
+	}
+	21% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(0deg);
+	}
+	75% {
+		transform: scale(2);
+	}
+	100% {
+		transform: scale(1) translateX(800px);
+	}
+}

@@ -12,6 +12,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@remotion/cli": "3.3.87",
+    "@remotion/google-fonts": "^3.3.88",
     "@remotion/preload": "^3.3.87",
     "@types/lodash": "^4.14.194",
     "lodash": "^4.17.21",
