@@ -22,7 +22,7 @@ const unsplash = createApi({accessKey, fetch});
 
 const username = 'co_za_foto';
 
-const result = await unsplash.users.getPhotos({username});
+const result = await unsplash.users.getPhotos({username, perPage: 20});
 if (result.errors) {
 	throw new Error(result.errors[0]);
 }
@@ -30,7 +30,7 @@ const feed = result.response;
 const {results} = feed;
 
 results.forEach(async (result, index) => {
-	const url = result.links.download;
+	const url = result.urls.small;
 	const resp = await fetch(url);
 	if (resp.status !== 200) {
 		console.error(
@@ -38,6 +38,6 @@ results.forEach(async (result, index) => {
 		);
 	}
 
-	const outDir = 'src/assets/';
+	const outDir = 'public/assets/';
 	resp.body.pipe(fs.createWriteStream(path.join(outDir, `photo-${index}.jpg`)));
 });
