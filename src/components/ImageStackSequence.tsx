@@ -2,21 +2,13 @@ import {
 	AbsoluteFill,
 	useCurrentFrame,
 	Img,
-	staticFile,
 } from 'remotion';
-import {preloadImage} from '@remotion/preload';
-import {range} from 'lodash';
 import React from 'react';
 import Config from './config'
+import assets from './assets'
 
 // The sequence described by this file.
 const Sequence = Config.sequences[0];
-
-const imageUrls = range(0, 20)
-	.map((n) => staticFile(`assets/photo-${n}.jpg`))
-	.reverse();
-
-const _preloadedImageHandles = imageUrls.map(preloadImage);
 
 /**
  * Load images from their URLs, and stack them on top of each other.
@@ -59,11 +51,11 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
  * top on each other.
  */
  export default function ImageStackSequence(): JSX.Element {
-	const imageCount = imageUrls.length;
+	const imageCount = assets.imageUrls.length;
 	const [images, setImages] = React.useState<JSX.Element[]>([]);
 
 	React.useEffect(() => {
-		setImages(stackImages(imageUrls));
+		setImages(stackImages(assets.imageUrls));
 	}, []);
 
 	// Once every `framesPerImage` frames, we render a new image on top
