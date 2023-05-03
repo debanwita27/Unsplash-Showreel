@@ -8,7 +8,7 @@ export const RemotionRoot: React.FC = () => {
 	const firstSequence = Config.sequences[0];
 	return (
 		<Composition
-			id="MyComp"
+			id="FirstSequence"
 			component={ImageStackSequence}
 			durationInFrames={firstSequence.numFrames}
 			fps={firstSequence.fps}

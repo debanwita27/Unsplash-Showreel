@@ -20,7 +20,7 @@ dotenv.config();
 const accessKey = process.env.UNSPLASH_API_KEY;
 const unsplash = createApi({accessKey, fetch});
 
-const username = 'co_za_foto';
+const username = 'dshap';
 
 const result = await unsplash.users.getPhotos({username, perPage: 20});
 if (result.errors) {
