@@ -51,7 +51,7 @@ export const RemotionRoot: React.FC = () => {
 	return (
 		<>
 			<Composition
-				id="FirstSequence"
+				id="ShowReel"
 				component={Video}
 				durationInFrames={video.durationInSec * video.fps}
 				fps={video.fps}

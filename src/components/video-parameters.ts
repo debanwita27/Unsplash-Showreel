@@ -18,7 +18,7 @@ const sequences: SequenceParams[] = [
 ];
 
 const video = {
-	durationInSec: 15,
+	durationInSec: 8,
 	fps: 60,
 	width: 1280,
 	height: 720,

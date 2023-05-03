@@ -4,7 +4,6 @@ import assets from './assets';
 export function CarouselTransition(): JSX.Element {
 	// TODO (@dm): club common styles into a CSS class, or a style object.
 
-	const rotation = 25;
 	return (
 		<AbsoluteFill
 			style={{
@@ -23,7 +22,7 @@ export function CarouselTransition(): JSX.Element {
 
 export function Carousel(): JSX.Element {
 	const images = assets.imageUrls;
-	const {width, height, durationInFrames } = useVideoConfig();
+	const {durationInFrames } = useVideoConfig();
 	const currentFrame = useCurrentFrame();
 	const xOffset = (durationInFrames - currentFrame) * 40 - 100;
 
