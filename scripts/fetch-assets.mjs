@@ -22,7 +22,7 @@ const unsplash = createApi({accessKey, fetch});
 
 const username = 'dshap';
 
-const result = await unsplash.users.getPhotos({username, perPage: 20});
+const result = await unsplash.users.getPhotos({username, perPage: 30});
 if (result.errors) {
 	throw new Error(result.errors[0]);
 }

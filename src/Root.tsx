@@ -55,11 +55,11 @@ export const Video: React.FC = () => {
 				<CutoutTransition />
 			</Sequence>
 
-			<Sequence from={540} durationInFrames={130}>
+			<Sequence from={480 + 60} durationInFrames={120}>
 				<Cutout />
 			</Sequence>
 
-			<Sequence from={540 + 65} durationInFrames={65}>
+			<Sequence from={480 + 60 + 100} durationInFrames={125}>
 				<SlidingImages />
 			</Sequence>
 		</>

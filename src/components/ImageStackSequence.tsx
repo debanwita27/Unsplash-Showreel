@@ -7,13 +7,13 @@ import assets from './assets';
  * @param imageUrls A list of URLs where every URL represents an image
  * @return an array of image elements where every item is slightly rotated and translated.
  */
-function stackImages(imageUrls: string[]): JSX.Element[] {
+function stackImages(imageUrls: string[], numImages: number): JSX.Element[] {
 	const imageCount = imageUrls.length;
 	const imageMinRotate = -25;
 	const imageMaxRotate = 25;
 	const translateOffset = 50;
 
-	const imgs = imageUrls.map((url, index) => {
+	const imgs = imageUrls.slice(0, numImages).map((url, index) => {
 		const rotationInDeg =
 			(index % 2 ? -1 : 1) *
 			(imageMinRotate +
@@ -35,7 +35,7 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
 		);
 	});
 
-	return imgs;
+	return imgs.reverse();
 }
 
 /**
@@ -43,13 +43,13 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
  * top on each other.
  */
 export default function ImageStackSequence(): JSX.Element {
-	const imageCount = assets.imageUrls.length;
+	const imageCount = 19;
 	const [images, setImages] = React.useState<JSX.Element[]>([]);
 	const {durationInFrames} = useVideoConfig();
 	const framesToLast = durationInFrames - 40;
 
 	React.useEffect(() => {
-		setImages(stackImages(assets.imageUrls));
+		setImages(stackImages(assets.imageUrls, imageCount));
 	}, []);
 
 	// Once every `framesPerImage` frames, we render a new image on top

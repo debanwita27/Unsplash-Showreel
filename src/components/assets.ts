@@ -37,9 +37,8 @@ const assets: Assets = {
    * Must be called *once* before the video has begun playing.
 	 */
 	load() {
-		this.imageUrls = range(0, 20)
-			.map((n) => staticFile(`assets/photo-${n}.jpg`))
-			.reverse();
+		this.imageUrls = range(0, 29)
+			.map((n) => staticFile(`assets/photo-${n}.jpg`));
 		this._preloadedImageHandles = this.imageUrls.map(preloadImage);
 		this._audioTrackHandle = preloadAudio(this.audioTrackUrl)
 	},

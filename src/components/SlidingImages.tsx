@@ -1,15 +1,32 @@
-import {
-	AbsoluteFill,
-	Img,
-	useVideoConfig,
-	useCurrentFrame,
-} from 'remotion';
+import {AbsoluteFill, Img, useVideoConfig, useCurrentFrame} from 'remotion';
 import assets from './assets';
 
 export default function SlidingImages() {
 	const {durationInFrames} = useVideoConfig();
 
-	const images = [11, 17, 19].map((idx) => {
+	// TODO(@dm) Add a comment explaining this
+	const imageSets = [
+		[1],
+		[1, 2],
+		[1, 2, 20],
+		[1, 2, 20],
+		[3, 2, 20],
+		[3, 4, 20],
+		[3, 4, 21],
+		[5, 4, 21],
+		[5, 6, 21],
+		[5, 6, 22],
+		[-1, 6, 22],
+		[-1, 6, 22],
+		[-1, -1, 22],
+		[-1, -1, 22],
+		[-1, -1, -1],
+	];
+
+	const frame = useCurrentFrame();
+	const currentImageSet = imageSets[Math.floor(imageSets.length * frame / durationInFrames)]
+
+	const images = currentImageSet.map((idx) => {
 		return (
 			<div
 				style={{
@@ -24,15 +41,12 @@ export default function SlidingImages() {
 						width: '100%',
 						height: '100%',
 						objectFit: 'cover',
+						filter: 'grayscale(50%)'
 					}}
 				/>
 			</div>
 		);
 	});
-
-
-	const frame = useCurrentFrame();
-	const indexByFrame = Math.floor((images.length * frame) / durationInFrames);
 
 	return (
 		<AbsoluteFill
@@ -40,10 +54,9 @@ export default function SlidingImages() {
 				flexDirection: 'row',
 				display: 'flex',
 				alignItems: 'stretch',
-				
 			}}
 		>
-			{images.slice(0, indexByFrame + 1)}
+			{images}
 		</AbsoluteFill>
 	);
 }

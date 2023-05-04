@@ -3,7 +3,6 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 	spring,
-	Img,
 } from 'remotion';
 import assets from './assets';
 
@@ -34,7 +33,14 @@ export function CutoutTransition() {
 }
 
 export function Cutout() {
-	const bgColors = ['#222f3e', '#c0392b', '#f39c12'];
+	const bgColors = [
+		'#222f3e',
+		'#c0392b',
+		'#10ac84',
+		'#8e44ad',
+		'#f39c12',
+		'#f39c12'
+	];
 
 	const {durationInFrames} = useVideoConfig();
 	const frame = useCurrentFrame();
