@@ -1,10 +1,6 @@
-import {
-	AbsoluteFill,
-	useCurrentFrame,
-	Img
-} from 'remotion';
+import {AbsoluteFill, useCurrentFrame, Img, useVideoConfig} from 'remotion';
 import React from 'react';
-import assets from './assets'
+import assets from './assets';
 
 /**
  * Load images from their URLs, and stack them on top of each other.
@@ -27,7 +23,7 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
 		return (
 			<Img
 				key={index}
-				className="photograph"
+				className="photograph-polaroid"
 				style={{
 					margin: 'auto',
 					height: '75%',
@@ -46,10 +42,11 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
  * The first sequence in the video that shows a bunch of images stacking on
  * top on each other.
  */
- export default function ImageStackSequence(): JSX.Element {
+export default function ImageStackSequence(): JSX.Element {
 	const imageCount = assets.imageUrls.length;
 	const [images, setImages] = React.useState<JSX.Element[]>([]);
-	const framesToLast = 180;
+	const {durationInFrames} = useVideoConfig();
+	const framesToLast = durationInFrames - 40;
 
 	React.useEffect(() => {
 		setImages(stackImages(assets.imageUrls));
@@ -73,4 +70,4 @@ function stackImages(imageUrls: string[]): JSX.Element[] {
 			{images.slice(0, lastIndex)}
 		</AbsoluteFill>
 	);
-};
+}

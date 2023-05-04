@@ -1,12 +1,14 @@
 import {preloadImage, preloadAudio} from '@remotion/preload';
 import {staticFile} from 'remotion';
 import {range} from 'lodash';
+import {loadFont} from '@remotion/google-fonts/DMSans';
 
 type Assets = {
 	imageUrls: string[];
 	audioTrackUrl: string;
 	_preloadedImageHandles: Array<() => void>;
 	_audioTrackHandle: null | (() => void);
+	fontFamily: string;
   load: () => void;
   unload: () => void;
 };
@@ -21,6 +23,8 @@ const assets: Assets = {
 	imageUrls: [],
 
 	audioTrackUrl: staticFile('assets/music.mp3'),
+
+	fontFamily: loadFont().fontFamily,
 
 	_audioTrackHandle: null,
 

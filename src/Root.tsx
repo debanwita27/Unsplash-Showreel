@@ -7,6 +7,9 @@ import {
 	Carousel,
 	BackgroundSequence,
 	TextWithBg,
+	CutoutTransition,
+	Cutout,
+	SlidingImages
 } from './components';
 import video from './components/video-parameters';
 import assets from './components/assets';
@@ -16,12 +19,26 @@ export const Video: React.FC = () => {
 	return (
 		<>
 			<Audio src={assets.audioTrackUrl} />
+
+			{/*
+			 * This sequence spans the entire length of the video, and
+			 * serves as the background color for every sequence on top of it.
+			 */}
 			<Sequence durationInFrames={video.durationInSec * video.fps}>
 				<BackgroundSequence />
 			</Sequence>
+
+			{/**
+			 *  The first part of the video shows a bunch of images haphazardly stacking on top
+			 * of each other.
+			 */}
 			<Sequence durationInFrames={firstSequence.numFrames}>
 				<ImageStackSequence />
 			</Sequence>
+
+			{/**
+			 * The second part shows a carousel of photos sliding from right to left
+			 */}
 			<Sequence from={firstSequence.numFrames - 30} durationInFrames={182}>
 				<CarouselTransition />
 			</Sequence>
@@ -30,9 +47,20 @@ export const Video: React.FC = () => {
 				<Carousel />
 			</Sequence>
 
-
 			<Sequence from={240} durationInFrames={240}>
 				<TextWithBg />
+			</Sequence>
+
+			<Sequence from={480} durationInFrames={60}>
+				<CutoutTransition />
+			</Sequence>
+
+			<Sequence from={540} durationInFrames={130}>
+				<Cutout />
+			</Sequence>
+
+			<Sequence from={540 + 65} durationInFrames={65}>
+				<SlidingImages />
 			</Sequence>
 		</>
 	);

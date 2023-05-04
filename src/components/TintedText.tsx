@@ -1,16 +1,15 @@
 import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
-import {loadFont} from '@remotion/google-fonts/DMSans';
-
-const {fontFamily} = loadFont('normal', {weights: ['400', '500', '700']});
+import assets from './assets'
 
 export default function TintedText(): JSX.Element {
 	const {durationInFrames} = useVideoConfig();
 	const currentFrame = useCurrentFrame();
 	const texts = [
-    '',
+		'',
 		'I',
-		'shoot',
-		'people',
+		'I shoot',
+		'I shoot people',
+		'I shoot people',
 		'.',
 		'..',
 		'...',
@@ -21,8 +20,9 @@ export default function TintedText(): JSX.Element {
 		'with my camera ;)',
 	];
 
-	const textIndex = Math.floor(
-		(currentFrame / durationInFrames) * texts.length
+	const textIndex = Math.min(
+		Math.floor((currentFrame / (durationInFrames - 50)) * texts.length),
+		texts.length - 1
 	);
 
 	return (
@@ -33,7 +33,7 @@ export default function TintedText(): JSX.Element {
 				backgroundColor: 'rgba(0, 0, 0, 0.6)',
 				fontSize: 80,
 				color: 'white',
-				fontFamily,
+				fontFamily: assets.fontFamily,
 				fontWeight: 700,
 			}}
 		>
