@@ -19,12 +19,11 @@ const textContainerStyle: React.CSSProperties = {
 /**
  * Transition from the carousel to the cutout styled text.
  */
-export function CutoutTransition() {
+export function TextTransition() {
 	const frame = useCurrentFrame();
 	const {fps} = useVideoConfig();
 	const fontSize = spring({fps, frame: frame - 20, from: 80, to: 100});
 
-	// TODO: club these styles somewhere
 	return (
 		<AbsoluteFill style={{fontSize, ...textContainerStyle}}>
 			with my camera ;)
@@ -32,7 +31,7 @@ export function CutoutTransition() {
 	);
 }
 
-export function Cutout() {
+export function PastelText() {
 	const bgColors = [
 		'#222f3e',
 		'#c0392b',

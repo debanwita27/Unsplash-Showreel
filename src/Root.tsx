@@ -7,8 +7,8 @@ import {
 	Carousel,
 	BackgroundSequence,
 	TextWithBg,
-	CutoutTransition,
-	Cutout,
+	TextTransition,
+	PastelText,
 	SlidingImages
 } from './components';
 import video from './components/video-parameters';
@@ -52,11 +52,11 @@ export const Video: React.FC = () => {
 			</Sequence>
 
 			<Sequence from={480} durationInFrames={60}>
-				<CutoutTransition />
+				<TextTransition />
 			</Sequence>
 
 			<Sequence from={480 + 60} durationInFrames={120}>
-				<Cutout />
+				<PastelText />
 			</Sequence>
 
 			<Sequence from={480 + 60 + 100} durationInFrames={125}>
