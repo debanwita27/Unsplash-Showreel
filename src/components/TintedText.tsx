@@ -1,7 +1,7 @@
 import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
 import assets from './assets'
 
-export default function TintedText(): JSX.Element {
+export default function KineticTextOnTintedBg(): JSX.Element {
 	const {durationInFrames} = useVideoConfig();
 	const currentFrame = useCurrentFrame();
 	const texts = [

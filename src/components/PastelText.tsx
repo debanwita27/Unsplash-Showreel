@@ -3,6 +3,7 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 	spring,
+	Img,
 } from 'remotion';
 import assets from './assets';
 
@@ -16,8 +17,59 @@ const textContainerStyle: React.CSSProperties = {
 	fontWeight: 700,
 };
 
+export function ProfileText() {
+	const frame = useCurrentFrame();
+	const {fps} = useVideoConfig();
+	const scale = spring({fps, frame: frame - 60, from: 600, to: 0});
+
+	return (
+		<AbsoluteFill
+			style={{
+				fontSize: 80,
+				...textContainerStyle,
+				background: 'none',
+				color: 'black',
+			}}
+		>
+			<Img
+				src={assets.imageUrls[25]}
+				className="photograph-polaroid"
+				style={{
+					position: 'absolute',
+					transform: 'rotate(40deg) translate(-600px, 80px)',
+				}}
+			/>
+
+			<Img
+				src={assets.imageUrls[28]}
+				className="photograph-polaroid"
+				style={{
+					position: 'absolute',
+					transform: 'rotate(-20deg) translate(600px, 100px)',
+				}}
+			/>
+
+			<Img
+				src={assets.imageUrls[19]}
+				className="photograph-polaroid"
+				style={{
+					position: 'absolute',
+					transform: 'rotate(15deg) translate(-450px, 500px)',
+				}}
+			/>
+
+			<span style={{transform: `translateY(${scale}px)` }}>
+				Daniel Shapiro
+			</span>
+			<span style={{textDecoration: 'underline', color: '#1B9CFC', fontSize: '44px'}}>
+				unsplash.com/dshap
+			</span>
+		</AbsoluteFill>
+	);
+}
+
 /**
- * Transition from the carousel to the cutout styled text.
+ * Transition from the carousel to the pastel background text.
  */
 export function TextTransition() {
 	const frame = useCurrentFrame();
@@ -38,7 +90,7 @@ export function PastelText() {
 		'#10ac84',
 		'#8e44ad',
 		'#f39c12',
-		'#f39c12'
+		'#f39c12',
 	];
 
 	const {durationInFrames} = useVideoConfig();
