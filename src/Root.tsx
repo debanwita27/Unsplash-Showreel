@@ -10,12 +10,17 @@ import {
 	TextTransition,
 	PastelText,
 	Gallery,
-	ProfileText,
+	ProfilePage,
 } from './components';
 import video from './components/video-parameters';
 import assets from './components/assets';
 
-export const Video: React.FC = () => {
+
+/**
+ * Encapsulates the list of sequences that make up the showreel.
+ * This component must only be used once (inside a composition).
+ */
+export const ShowreelVideo: React.FC = () => {
 	// This sequence always plays in the background (from first to last frame),
 	// and shows a static texture.
 	const bgSequence = (
@@ -85,7 +90,7 @@ export const Video: React.FC = () => {
 	// to give it a neuromorphic look).
 	const profileText = (
 		<Sequence from={480 + 60 + 100 + 80} durationInFrames={200}>
-				<ProfileText />
+				<ProfilePage />
 		</Sequence>
 	)
 
@@ -107,6 +112,11 @@ export const Video: React.FC = () => {
 	);
 };
 
+/**
+ * Root component for the remotion video.
+ * NOTE: do not instantiate this manually.
+ * Used in {@link ./index.ts} 
+ */
 export const RemotionRoot: React.FC = () => {
 	// load all assets before the first render.
 	React.useEffect(() => {
@@ -118,15 +128,13 @@ export const RemotionRoot: React.FC = () => {
 	}, []);
 
 	return (
-		<>
 			<Composition
 				id="ShowReel"
-				component={Video}
+				component={ShowreelVideo}
 				durationInFrames={video.durationInSec * video.fps}
 				fps={video.fps}
 				width={video.width}
 				height={video.height}
 			/>
-		</>
 	);
 };

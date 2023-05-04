@@ -8,6 +8,9 @@ import {
 } from 'remotion';
 import assets from './assets';
 
+/**
+ * Transition sequence to go from a stack of images to a moving carousel.
+ */
 export function CarouselTransition(): JSX.Element {
 	const frame = useCurrentFrame();
 	const {durationInFrames} = useVideoConfig();
@@ -26,6 +29,7 @@ export function CarouselTransition(): JSX.Element {
 		[1, 1, 3, 2.8, 1.2, 1.2]
 	);
 
+	// The first image in the carousel rotates exactly once.
 	const rotation = frame > 5 ?  0 : 25;
 
 	return (
@@ -47,6 +51,9 @@ export function CarouselTransition(): JSX.Element {
 	);
 }
 
+/**
+ * A carousel of images sliding from right to left.
+ */
 export function Carousel(): JSX.Element {
 	const images = assets.imageUrls;
 	const {durationInFrames} = useVideoConfig();

@@ -1,6 +1,9 @@
 import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
 import assets from './assets'
 
+/**
+ * Renders a series of strings in order (on top of a tinted background).
+ */
 export default function KineticTextOnTintedBg(): JSX.Element {
 	const {durationInFrames} = useVideoConfig();
 	const currentFrame = useCurrentFrame();

@@ -5,6 +5,7 @@ import assets from './assets';
 /**
  * Load images from their URLs, and stack them on top of each other.
  * @param imageUrls A list of URLs where every URL represents an image
+ * @param numImages The number of images to take from [imageUrls].
  * @return an array of image elements where every item is slightly rotated and translated.
  */
 function stackImages(imageUrls: string[], numImages: number): JSX.Element[] {

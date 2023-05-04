@@ -7,6 +7,7 @@ import {
 } from 'remotion';
 import assets from './assets';
 
+
 const textContainerStyle: React.CSSProperties = {
 	fontFamily: assets.fontFamily,
 	color: '#fff',
@@ -17,7 +18,10 @@ const textContainerStyle: React.CSSProperties = {
 	fontWeight: 700,
 };
 
-export function ProfileText() {
+/**
+ * The final sequence that shows the unsplash user's profile.
+ */
+export function ProfilePage() {
 	const frame = useCurrentFrame();
 	const {fps} = useVideoConfig();
 	const scale = spring({fps, frame: frame - 60, from: 600, to: 0});
