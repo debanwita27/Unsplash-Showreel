@@ -38,7 +38,7 @@ Fetching images and the audio track (even from the local directory) was creating
 ### Challenges
   - **Using cutout text**   
   Remotion doesn't allow URLs in the style attribute. Instead, it requires us to use the `Img` wrapper and set its size to cover the screen to use it as a background image. This proved to be a hindrance when I wanted to add a cutout text that shows the image that's behind it ( the conventional method is setting a background image and using either `background-clip` or `mix-blend-mode : screen` )
-  - **Syncing visuals audio**  
+  - **Syncing visuals with audio**  
   Audio tracks in standard video editing softwares usually show a sound spectrum, which makes it easy to sync animations with the beat. The lack of a sound spectrum made the syncing process ad hoc and inconvenient
   - **Managing timeline**  
   Currently, the timeline is created by storing the start time and duration of each sequence in an object. The numbers, however, were also decided in an ad hoc fashion, and I wasn't able to find a way to time the video in a principled manner
